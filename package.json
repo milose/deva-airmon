@@ -1,0 +1,25 @@
+{
+  "name": "deva-airmon",
+  "version": "0.1.0",
+  "description": "On-Air monitoring suite for Radio stations.",
+  "author": "Milos Sakovic <milos@deva.co>",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app/index.js --exec babel-node",
+    "build": "babel app -d dist",
+    "serve": "node dist/index.js"
+  },
+  "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "nodemon": "^1.11.0"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "devDependencies": {}
+}
