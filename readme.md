@@ -14,7 +14,7 @@ Info [link](http://example.com) here.
 
 #### App
 
-- [ ] Create basic template
+- [x] Create basic template
 - [ ] Laravel Elixir
 - [ ] Vue main
 - [ ] Vue components
