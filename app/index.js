@@ -65,4 +65,4 @@ app.get('/stop', (req, res) => {
   res.send('Stopped')
 })
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || 1337)
