@@ -30,11 +30,11 @@ app.get('/record', (req, res) => {
   pid = rec.pid
 
   // Error
-  rec.stderr.on('data', (data) => {
-    console.log('error', data)
-
-    pid = null
-  })
+  // rec.stderr.on('data', (data) => {
+  //   console.log('error', data)
+  //
+  //   pid = null
+  // })
 
   // Close
   rec.on('close', (code) => {
