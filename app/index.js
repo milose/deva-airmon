@@ -6,9 +6,11 @@ import express from 'express'
 import proc from 'child_process'
 import d from 'moment'
 
+//import { getFile } from 'dropbox-client'
+//var getFile = require('dropbox-client').getFile
+
 let pid = null
-let input_file = 'tmp/input.wav'
-let output_file = ''
+let converted_file = ''
 
 let app = express()
 
@@ -21,30 +23,28 @@ app.get('/', (req, res) => {
 })
 
 app.get('/record', (req, res) => {
-
   // Record
-  let rec = proc.exec(`arecord -f cd ${input_file}`)
+  let rec = proc.exec(`arecord -q -f cd ${process.env.TEMP_FILE}`)
   pid = rec.pid
-  output_file = d().format('YYYY-MM-DD_HH-mm-ss_SSSS')
 
   // Error
-  // rec.stderr.on('data', (data) => {
-  //   console.log('error', data)
-  //
-  //   pid = null
-  // })
+  rec.stderr.on('data', (data) => {
+    pid = null
+    console.log('error', data)
+  })
 
   // Close
   rec.on('close', (code) => {
-    console.log(`arecord process exited with code ${code}`)
-
     pid = null
+    converted_file = d().format('YYYY-MM-DD_HH-mm-ss') + `.${process.env.CONV_FILE_EXT}`
 
     // Convert
-    let conv = proc.exec(`ffmpeg -nostats -loglevel 0 -y -i ${input_file} -ar 32000 -c:a libmp3lame -b:a 64k recordings/${output_file}.mp3`)
+    let conv = proc.exec(`ffmpeg -nostats -loglevel 0 -y -i ${process.env.TEMP_FILE} -ar 32000 -c:a libmp3lame -b:a 64k ${process.env.CONV_DIR}/${converted_file}`)
 
     conv.on('close', (code) => {
-      console.log('File converted.')
+      // 1. upload file
+      // 2. send to slack
+      // x. reset converted_file
     })
   })
 
@@ -57,7 +57,9 @@ app.get('/record', (req, res) => {
 app.get('/stop', (req, res) => {
 
   if (pid) {
-    let stop = proc.exec(`kill -KILL ${pid}`)
+    let stop = proc.exec(`pkill arecord`)
+    console.log('Stopped', pid)
+    pid = null
   }
 
   res.send('Stopped')
