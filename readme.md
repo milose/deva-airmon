@@ -6,6 +6,9 @@
 
 ```bash
 git clone git@github.com:milose/deva-airmon.git
+
+#mount the remote dir
+sshfs -o allow_other,defer_permissions pi@192.168.100.3:/var/www/nodes ~/Work/_sandbox/remote
 ```
 
 Info [link](http://example.com) here.
