@@ -21,13 +21,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/record', (req, res) => {
-  output_file = d().format('YYYY-MM-DD_HH-mm-ss_SSSS')
 
   // Record
   let rec = proc.exec(`arecord -f cd ${input_file}`)
-
-  // Set the PID
   pid = rec.pid
+  output_file = d().format('YYYY-MM-DD_HH-mm-ss_SSSS')
 
   // Error
   // rec.stderr.on('data', (data) => {
