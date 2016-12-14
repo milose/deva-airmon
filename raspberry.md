@@ -134,7 +134,8 @@ sudo apt-get install ffmpeg
 # Audio
 ```bash
 #working: arecord -f S16_LE -D hw:1 -r 48000 test.wav
-arecord -f cd -D hw:1 -r 48000 test.wav
+#arecord -f cd -D hw:1 test.wav
+arecord -f cd test.wav
 ```
 
 # encode
