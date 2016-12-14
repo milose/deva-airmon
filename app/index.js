@@ -24,7 +24,7 @@ app.get('/record', (req, res) => {
   output_file = d().format('YYYY-MM-DD_HH-mm-ss_SSSS')
 
   // Record
-  let rec = proc.spawn(`arecord -f cd ${input_file}`)
+  let rec = proc.exec(`arecord -f cd ${input_file}`)
 
   // Set the PID
   pid = rec.pid
@@ -43,7 +43,7 @@ app.get('/record', (req, res) => {
     pid = null
 
     // Convert
-    let conv = proc.spawn(`ffmpeg -nostats -loglevel 0 -y -i ${input_file} -ar 32000 -c:a libmp3lame -b:a 64k ${output_file}`)
+    let conv = proc.exec(`ffmpeg -nostats -loglevel 0 -y -i ${input_file} -ar 32000 -c:a libmp3lame -b:a 64k ${output_file}`)
 
     conv.on('close', (code) => {
       console.log('File converted.')
