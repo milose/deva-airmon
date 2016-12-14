@@ -7,7 +7,7 @@ import proc from 'child_process'
 import d from 'moment'
 
 let pid = null
-let input_file = 'input.wav'
+let input_file = 'tmp/input.wav'
 let output_file = ''
 
 let app = express()
@@ -43,7 +43,7 @@ app.get('/record', (req, res) => {
     pid = null
 
     // Convert
-    let conv = proc.exec(`ffmpeg -nostats -loglevel 0 -y -i ${input_file} -ar 32000 -c:a libmp3lame -b:a 64k ${output_file}`)
+    let conv = proc.exec(`ffmpeg -nostats -loglevel 0 -y -i ${input_file} -ar 32000 -c:a libmp3lame -b:a 64k recordings/${output_file}.mp3`)
 
     conv.on('close', (code) => {
       console.log('File converted.')
