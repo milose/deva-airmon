@@ -124,19 +124,22 @@ sudo nano /usr/share/alsa/alsa.conf
 # ffmpeg
 ```bash
 sudo apt-get install ffmpeg
-# if not
-# sudo nano /etc/apt/sources.list
-# add
-# deb http://httpredir.debian.org/debian jessie-backports main
+# if cant
+# open sudo nano /etc/apt/sources.list
+# add deb http://httpredir.debian.org/debian jessie-backports main
 # sudo apt-get update
 # sudo apt-get -t jessie-backports install ffmpeg
 ```
 
 # Audio
 ```bash
-arecord -f S16_LE -D hw:1 -r 48000 test.wav
+#working: arecord -f S16_LE -D hw:1 -r 48000 test.wav
+arecord -f cd -D hw:1 -r 48000 test.wav
+```
+
 # encode
-time ffmpeg -y -i test.wav -ar 32000 -c:a libmp3lame -b:a 64k output.mp3
+```bash
+ffmpeg -nostats -loglevel 0 -y -i test.wav -ar 32000 -c:a libmp3lame -b:a 64k output.mp3
 #time ffmpeg -y -i test.wav -ar 32000 -c:a aac -b:a 64k output-128.m4a
 #time ffmpeg -y -i test.wav -ar 32000 -c:a aac -vbr 4 output-vbr.m4a
 #time ffmpeg -y -i test.wav -ar 32000 -c:a libmp3lame -q:a 8 output.mp3
