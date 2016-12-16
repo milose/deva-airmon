@@ -2,13 +2,14 @@
 
 require('dotenv').config()
 
-import express from 'express'
 import proc from 'child_process'
+import express from 'express'
+import moment from 'moment'
 import path from 'path'
 import pug from 'pug'
-import d from 'moment'
 //import { getFile } from 'dropbox-client'
 //var getFile = require('dropbox-client').getFile
+
 var mailgun = require('mailgun-js')({
   apiKey: process.env.MAILGUN_KEY,
   domain: process.env.MAILGUN_DOMAIN
@@ -46,7 +47,7 @@ app.get('/record', (req, res) => {
   // Close
   rec.on('close', (code) => {
     pid = null
-    converted_file = d().format('YYYY-MM-DD_HH-mm-ss') + `.${process.env.CONV_FILE_EXT}`
+    converted_file = moment().format('YYYY-MM-DD_HH-mm-ss') + `.${process.env.CONV_FILE_EXT}`
 
     // Convert
     let conv = proc.exec(`ffmpeg -nostats -loglevel 0 -y -i ${process.env.TEMP_FILE} -ar 32000 -c:a libmp3lame -b:a 64k ${process.env.CONV_DIR}/${converted_file}`)

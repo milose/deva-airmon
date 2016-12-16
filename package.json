@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon app/index.js --exec babel-node",
+    "new": "nodemon index.js --exec babel-node",
     "build": "babel app -d dist",
     "serve": "node dist/index.js"
   },
