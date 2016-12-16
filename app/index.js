@@ -104,3 +104,10 @@ app.get('/stop', (req, res) => {
 })
 
 app.listen(process.env.PORT || 1337)
+
+function record_stop() {
+  if (pid) {
+    proc.exec(exec_kill)
+    pid = null
+  }
+}

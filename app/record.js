@@ -1,10 +1,11 @@
 'use strict'
 
 import proc from 'child_process'
-import path from 'path'
 
-let kill = (process_name = 'arecord') => {
-  proc.exec(`pkill ${process_name}`)
+exports.begin = (file_to_record) => {
+  return proc.exec(`arecord -q -f cd ${file_to_record}`)
 }
 
-module.exports.kill = kill
+exports.end = (process_name = 'arecord') => {
+  return proc.exec(`pkill ${process_name}`)
+}
