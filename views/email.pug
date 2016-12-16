@@ -1,0 +1,74 @@
+doctype html
+html
+  //
+    #{app_name}
+    #{app_uri}
+
+    #{msg_regards}
+    #{msg_greeting}
+    #{msg_text}
+
+    #{act_uri}
+    #{act_text}
+  head
+    meta(content='width=device-width, initial-scale=1.0', name='viewport')
+    meta(content='text/html; charset=utf-8', http-equiv='Content-Type')
+    style(media='all', rel='stylesheet', type='text/css').
+      /* Media Queries */
+      @media only screen and (max-width: 500px) {
+      .button {
+      width: 100% !important;
+      }
+      }
+    title
+  body(style='margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;')
+    table(cellpadding='0', cellspacing='0', width='100%')
+      tr
+        td(align='center', style='width: 100%; margin: 0; padding: 0; background-color: #F2F4F6;')
+          table(cellpadding='0', cellspacing='0', width='100%')
+            // Logo
+            tr
+              td(style='padding: 25px 0; text-align: center;')
+                a(href='#{app_uri}', style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #2F3133; text-decoration: none; text-shadow: 0 1px 0 white;", target='_blank') #{app_name}
+            // Email Body
+            tr
+              td(style='width: 100%; margin: 0; padding: 0; border-top: 1px solid #EDEFF2; border-bottom: 1px solid #EDEFF2; background-color: #FFF;', width='100%')
+                table(align='center', cellpadding='0', cellspacing='0', style='width: auto; max-width: 570px; margin: 0 auto; padding: 0;', width='570')
+                  tr
+                    td(style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; padding: 35px;")
+                      // Greeting
+                      h1(style='margin-top: 0; color: #2F3133; font-size: 19px; font-weight: bold; text-align: left;') #{msg_greeting}
+                      // Intro
+                      p(style='margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;') #{msg_text}
+                      // Action Button
+                      if act_uri
+                        table(align='center', cellpadding='0', cellspacing='0', style='width: 100%; margin: 30px auto; padding: 0; text-align: center;', width='100%')
+                          tr
+                            td(align='center')
+                              a.button(href='#{act_uri}', style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; display: block; display: inline-block; width: 200px; min-height: 20px; padding: 10px; background-color: #3869D4; border-radius: 3px; color: #ffffff; font-size: 15px; line-height: 25px; text-align: center; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3869D4;", target='_blank') #{act_text}
+                      // Outro
+                      p(style='margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;') //
+                      // Salutation
+                      p(style='margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;')
+                        | #{msg_regards},
+                        br
+                        |  #{app_name}
+                      // Sub Copy
+                      if act_uri
+                        table(style='margin-top: 25px; padding-top: 25px; border-top: 1px solid #EDEFF2;')
+                          tr
+                            td(style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;")
+                              p(style='margin-top: 0; color: #74787E; font-size: 12px; line-height: 1.5em;')
+                                | If you’re having trouble clicking the "#{act_text}" button, copy and paste the URL below into your web browser:
+                              p(style='margin-top: 0; color: #74787E; font-size: 12px; line-height: 1.5em;')
+                                a(href='#{act_uri}', style='color: #3869D4;', target='_blank') #{act_uri}
+            // Footer
+            tr
+              td
+                table(align='center', cellpadding='0', cellspacing='0', style='width: auto; max-width: 570px; margin: 0 auto; padding: 0; text-align: center;', width='570')
+                  tr
+                    td(style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #AEAEAE; padding: 35px; text-align: center;")
+                      p(style='margin-top: 0; color: #74787E; font-size: 12px; line-height: 1.5em;')
+                        | © 2016
+                        a(href='#{app_uri}', style='color: #3869D4;', target='_blank') #{app_name}
+                        | . All rights reserved.
