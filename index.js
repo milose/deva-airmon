@@ -1,30 +1,35 @@
 'use strict'
 
 /*
-  RPI dependencies
- */
-
-import os from 'os'
-let gpio = null
-if (os.platform() == 'linux') {
-  gpio = require('rpi-gpio')
-}
-
-
-/*
   Load dependencies
  */
 
 import express from 'express'
 import env from 'dotenv'
+import os from 'os'
 
-
-/*
-  Load modules
- */
 import record from './app/record'
 import notify from './app/notify'
 import convert from './app/convert'
+
+
+/*
+  RPI dependencies
+ */
+
+let gpio = null
+if (os.arch() == 'arm') {
+  gpio = require('rpi-gpio')
+
+  gpio.on('change', function(channel, value) {
+    console.log('Channel ' + channel + ' value is now ' + value)
+  })
+
+  gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH)
+  gpio.setup(4, gpio.DIR_IN, gpio.EDGE_BOTH)
+
+  console.log('RPi enabled')
+}
 
 
 /*
@@ -36,11 +41,6 @@ env.config()
 
 // Kill old recording processes
 record.end()
-
-// Raspberry pi
-if (gpio) {
-  gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH)
-}
 
 // Express
 let app = express()
@@ -59,8 +59,4 @@ function job() {
   })
 }
 
-if (gpio) {
-  gpio.on('change', function(channel, value) {
-    console.log('Channel ' + channel + ' value is now ' + value)
-  })
-}
+console.log('Ready.')
