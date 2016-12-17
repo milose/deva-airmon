@@ -33,6 +33,8 @@ Info [link](http://example.com) here.
 - [ ] Dropbox
 - [ ] Create an api service to upload files / bucket
 - [ ] Find a bot with uploads
+- [ ] Command to clean old files / bot?
+- [ ] Configuration: station name, api to read anchor name from shift-register, id3 tags etc
 - [ ] Web config
 <!-- - [ ] Laravel Elixir -->
 <!-- - [ ] Vue main -->
