@@ -28,19 +28,17 @@ Info [link](http://example.com) here.
 
 #### App
 
-- [x] Create basic template
-- [ ] Laravel Elixir
-- [ ] Vue main
-- [ ] Vue components
-
-#### Audio record
-
-- [ ] Find module to exec command
-- [ ] Record on front end command
+- [ ] Clean up readme
+- [ ] Promises, maybe
+- [ ] Dropbox
+- [ ] Create an api service to upload files / bucket
+- [ ] Find a bot with uploads
+- [ ] Web config
+<!-- - [ ] Laravel Elixir -->
+<!-- - [ ] Vue main -->
+<!-- - [ ] Vue components -->
 
 #### GPIO
 
-- [ ] Install on RPI
-- [ ] Install NODE
-- [ ] Log to front / to debug
+- [ ] Should not depend on `sudo`
 - [ ] Investigate [this](http://elinux.org/RPi_Tutorial_EGHS%3aGPIO_Protection_Circuits)
