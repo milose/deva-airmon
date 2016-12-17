@@ -1,62 +1,47 @@
 'use strict'
 
-/*
-  Load dependencies
- */
-
 import express from 'express'
 import env from 'dotenv'
-import os from 'os'
+import moment from 'moment'
 
 import record from './app/record'
 import notify from './app/notify'
 import convert from './app/convert'
-
-
-/*
-  RPI dependencies
- */
-
-let gpio = null
-if (os.arch() == 'arm') {
-  gpio = require('rpi-gpio')
-
-  gpio.on('change', function(channel, value) {
-    console.log('Channel ' + channel + ' value is now ' + value)
-  })
-
-  gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH)
-  gpio.setup(4, gpio.DIR_IN, gpio.EDGE_BOTH)
-
-  console.log('RPi enabled')
-}
+import input from './app/input'
 
 
 /*
   Initialize
  */
 
-// Config
+// Load configuration to process.env
 env.config()
 
 // Kill old recording processes
 record.end()
 
 // Express
-let app = express()
-app.set('view engine', 'pug')
+// let app = express()
+// app.set('view engine', 'pug')
 
 
 /*
   Work
  */
 
-function job() {
+let recording_job = () => {
   record.begin(process.env.TEMP_FILE).on('close', () => {
-    convert(process.env).on('close', () => {
-      notify(process.env)
+    let output_file = moment().format('YYYY-MM-DD_HH-mm-ss') + `.${process.env.CONV_FILE_EXT}`
+
+    convert(output_file, process.env).on('close', () => {
+      notify(output_file, process.env)
     })
+
   })
 }
 
-console.log('Ready.')
+input.listen(recording_job)
+
+if (process.env.LOG_VERBOSE) {
+  console.log('Ready.')
+}

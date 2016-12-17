@@ -9,6 +9,17 @@ git clone git@github.com:milose/deva-airmon.git
 
 #mount the remote dir
 sshfs -o allow_other,defer_permissions pi@192.168.100.3:/var/www/nodes ~/Work/_sandbox/remote
+#unmount
+
+#sudo adduser pi gpio
+diskutil unmount ~/Work/_sandbox/remote
+
+#this shit doesnt work
+sudo adduser pi gpio
+sudo chown root.gpio /dev/gpiomem
+sudo chmod g+rw /dev/gpiomem
+sudo chown root.gpio /dev/mem
+sudo chmod g+rw /dev/mem
 ```
 
 Info [link](http://example.com) here.

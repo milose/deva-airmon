@@ -2,8 +2,10 @@
 
 import mail from 'mailgun-js'
 import pug from 'pug'
+import path from 'path'
 
-export default (config) => {
+export default (converted_file, config) => {
+
   let mailgun = mail({
     apiKey: config.MAILGUN_KEY,
     domain: config.MAILGUN_DOMAIN
@@ -30,4 +32,9 @@ export default (config) => {
   }
 
   mailgun.messages().send(message)
+
+  if (process.env.LOG_VERBOSE) {
+    console.log('Sent message.')
+  }
+
 }
