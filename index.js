@@ -29,18 +29,19 @@ record.end()
   Work
  */
 
-let recording_job = () => {
+input.listen(() => {
+  if (process.env.LOG_VERBOSE) {
+    console.log('Started recording.')
+  }
+
   record.begin(process.env.TEMP_FILE).on('close', () => {
     let output_file = moment().format('YYYY-MM-DD_HH-mm-ss') + `.${process.env.CONV_FILE_EXT}`
 
     convert(output_file, process.env).on('close', () => {
       notify(output_file, process.env)
     })
-
   })
-}
-
-input.listen(recording_job)
+})
 
 if (process.env.LOG_VERBOSE) {
   console.log('Ready.')

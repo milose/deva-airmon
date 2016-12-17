@@ -33,7 +33,7 @@ export default (converted_file, config) => {
 
   mailgun.messages().send(message)
 
-  if (process.env.LOG_VERBOSE) {
+  if (config.LOG_VERBOSE) {
     console.log('Sent message.')
   }
 
