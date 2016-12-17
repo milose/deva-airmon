@@ -5,7 +5,7 @@
   "author": "Milos Sakovic <milos@deva.co>",
   "private": true,
   "scripts": {
-    "start": "nodemon app/index.js --exec babel-node",
+    "start": "nodemon index.js --exec babel-node",
     "build": "babel app -d dist",
     "serve": "node dist/index.js"
   },
@@ -18,11 +18,13 @@
     "mailgun-js": "^0.7.14",
     "moment": "^2.17.1",
     "nodemon": "^1.11.0",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "rpi-gpio": "^0.7.0",
+    "rpio": "^0.9.12",
+    "sleep": "^5.0.0"
   },
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
-  },
-  "devDependencies": {}
+  }
 }
