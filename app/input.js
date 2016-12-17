@@ -2,15 +2,16 @@
 
 import os from 'os'
 import sleep from 'sleep'
-import record from './record'
 
-let output_log = false
-let prev_value = true // del?
-let last_interrupt_time = 0
+let prev_value = true,
+  push = null,
+  release = null
 
-exports.listen = (callback, log_verbose = false) => {
+exports.listen = (channel, onPush, onRelease) => {
   let gpio = null
-  output_log = log_verbose
+
+  push = onPush
+  release = onRelease
 
   // Check if raspberry
   if (os.arch() == 'arm') {
@@ -19,54 +20,20 @@ exports.listen = (callback, log_verbose = false) => {
     gpio.on('change', debounce)
 
     // Setup for listening
-    gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH)
-
-    if (output_log) {
-      console.log('RPi enabled')
-    }
+    gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH)
   }
 }
 
 let debounce = (channel, value) => {
-  let interrupt_time = new Date().getTime()
-
-  if (interrupt_time - last_interrupt_time <= 1000 && last_interrupt_time > 0) {
-    return
+  if (!value && prev_value) {
+    push()
   }
 
-  last_interrupt_time = interrupt_time
-
-  if (!value) {
-    console.log('Started recording.')
-
-    // Process the callback
-    // callback()
-  } else {
-    console.log('Ended recording.')
-
-    // record.end()
+  if (value) {
+    release()
   }
 
+  prev_value = value
 
-  //   if (prev_value && !value) {
-  //     if (output_log) {
-  //       console.log('Started recording.')
-  //     }
-  //
-  //     // Process the callback
-  //     callback()
-  //   }
-  //
-  //   if (value) {
-  //     if (output_log) {
-  //       console.log('Ended recording.')
-  //     }
-  //
-  //     record.end()
-  //   }
-  //
-  //   prev_value = value
-  //
-  //   // Debounce
-  //   sleep.usleep(75000)
+  sleep.usleep(99000)
 }

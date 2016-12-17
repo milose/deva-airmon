@@ -29,7 +29,9 @@ record.end()
   Work
  */
 
-input.listen(() => {
+input.listen(7, onDown, onRelease)
+
+let onDown = () => {
   if (process.env.LOG_VERBOSE) {
     console.log('Started recording.')
   }
@@ -41,7 +43,9 @@ input.listen(() => {
       notify(output_file, process.env)
     })
   })
-})
+}
+
+let onRelease = () => record.end()
 
 if (process.env.LOG_VERBOSE) {
   console.log('Ready.')
