@@ -29,23 +29,25 @@ record.end()
   Work
  */
 
-input.listen(7, onDown, onRelease)
-
-let onDown = () => {
+let onPush = () => {
   if (process.env.LOG_VERBOSE) {
     console.log('Started recording.')
   }
 
-  record.begin(process.env.TEMP_FILE).on('close', () => {
-    let output_file = moment().format('YYYY-MM-DD_HH-mm-ss') + `.${process.env.CONV_FILE_EXT}`
+  record.begin(process.env.TEMP_FILE)
+    .on('close', () => {
+      let output_file = moment()
+        .format('YYYY-MM-DD_HH-mm-ss') + `.${process.env.CONV_FILE_EXT}`
 
-    convert(output_file, process.env).on('close', () => {
-      notify(output_file, process.env)
+      convert(output_file, process.env).on('close', () => notify(output_file, process.env))
     })
-  })
 }
 
-let onRelease = () => record.end()
+let onRelease = () => {
+  record.end()
+}
+
+input.momentary(7, onPush, onRelease)
 
 if (process.env.LOG_VERBOSE) {
   console.log('Ready.')

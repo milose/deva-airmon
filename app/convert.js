@@ -1,6 +1,6 @@
 'use strict'
 
-import proc from 'child_process'
+import { exec } from 'child_process'
 
 export default (output_file, config) => {
 
@@ -10,6 +10,6 @@ export default (output_file, config) => {
     console.log(cmd)
   }
 
-  return proc.exec(cmd)
+  return exec(cmd)
 
 }

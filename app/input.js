@@ -7,11 +7,11 @@ let prev_value = true,
   push = null,
   release = null
 
-exports.listen = (channel, onPush, onRelease) => {
-  let gpio = null
-
+exports.momentary = (channel, onPush, onRelease) => {
   push = onPush
   release = onRelease
+
+  let gpio = null
 
   // Check if raspberry
   if (os.arch() == 'arm') {
@@ -19,7 +19,7 @@ exports.listen = (channel, onPush, onRelease) => {
 
     gpio.on('change', debounce)
 
-    // Setup for listening
+    // Setup listener
     gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH)
   }
 }
