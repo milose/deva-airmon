@@ -25,8 +25,8 @@ export default (converted_file, config) => {
 
   let message = {
     from: 'deva-airmon <airmon@deva.co>',
-    to: 'Milos <milos@deva.co>',
-    cc: 'Gaga <drsvoditelji@gmail.com>',
+    cc: 'Milos <milos@deva.co>',
+    to: 'Gaga <drsvoditelji@gmail.com>',
     subject: 'Airmon record',
     html: pug.renderFile('views/email.pug', email_vars),
     attachment: `${config.CONV_DIR}/${converted_file}`,
