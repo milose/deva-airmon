@@ -17,7 +17,7 @@ export default (converted_file, config) => {
 
     msg_greeting: 'Hello',
     msg_regards: 'Regards',
-    msg_text: 'Hehe.',
+    msg_text: 'Deva.AirMon recorded this airing.',
 
     // act_uri: 'http://deva.co/act',
     // act_text: 'Play File',
@@ -26,8 +26,8 @@ export default (converted_file, config) => {
   let message = {
     from: 'deva-airmon <airmon@deva.co>',
     to: 'Milos <milos@deva.co>',
-    cc: 'Gaga <zlibogojevic@gmail.com>',
-    subject: 'Uploaded file',
+    cc: 'Gaga <drsvoditelji@gmail.com',
+    subject: 'Airmon record',
     html: pug.renderFile('views/email.pug', email_vars),
     attachment: path.join(__dirname + `/../${config.CONV_DIR}/${converted_file}`),
   }
