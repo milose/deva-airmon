@@ -2,12 +2,13 @@
   "name": "deva-airmon",
   "version": "0.1.0",
   "description": "On-Air monitoring suite for Radio stations.",
-  "author": "Milos Sakovic <milos@deva.co>",
+  "author": "Miloš Šaković <milos@deva.co>",
   "private": true,
   "scripts": {
-    "start": "nodemon index.js --exec babel-node",
-    "build": "babel index.js -d dist && babel app -d dist/app",
-    "serve": "node dist/index.js"
+    "start": "nodemon src/app.js --exec babel-node",
+    "build": "babel src/ -d dist/",
+    "serve": "sudo node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "dotenv": "^2.0.0",
