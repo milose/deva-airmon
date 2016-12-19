@@ -29,7 +29,6 @@ Info [link](http://example.com) here.
 #### App
 
 - [ ] Clean up readme
-- [ ] Promises, maybe
 - [ ] Dropbox
 - [ ] Create an api service to upload files / bucket
 - [ ] Find a bot with uploads
