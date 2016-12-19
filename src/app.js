@@ -43,12 +43,15 @@ let onPush = () => {
         '/' + moment().format('YYYY-MM-DD_HH-mm-ss') +
         `.${process.env.CONV_FILE_EXT}`
 
-      convert(record_file, output_file, process.env).on('close', () => notify(output_file, process.env))
+      convert(record_file, output_file, process.env)
+        .on('close', () => {
+          notify(output_file, process.env)
+        })
     })
 }
 
 let onRelease = () => {
-  record.end()
+  setTimeout(() => record.end(), process.env.EXTEND_RECORDING_BY)
 }
 
 input.momentary(7, onPush, onRelease)
