@@ -26,10 +26,10 @@ export default (converted_file, config) => {
   let message = {
     from: 'deva-airmon <airmon@deva.co>',
     to: 'Milos <milos@deva.co>',
-    cc: 'Gaga <drsvoditelji@gmail.com',
+    cc: 'Gaga <drsvoditelji@gmail.com>',
     subject: 'Airmon record',
     html: pug.renderFile('views/email.pug', email_vars),
-    attachment: path.join(__dirname + `/../${config.CONV_DIR}/${converted_file}`),
+    attachment: `${config.CONV_DIR}/${converted_file}`,
   }
 
   mailgun.messages().send(message)
