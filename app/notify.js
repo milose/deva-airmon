@@ -2,7 +2,6 @@
 
 import mail from 'mailgun-js'
 import pug from 'pug'
-import path from 'path'
 
 export default (converted_file, config) => {
 
@@ -17,7 +16,7 @@ export default (converted_file, config) => {
 
     msg_greeting: 'Hello',
     msg_regards: 'Regards',
-    msg_text: 'Deva.AirMon recorded this airing.',
+    msg_text: config.APP_NAME + ' recorded this airing.',
 
     // act_uri: 'http://deva.co/act',
     // act_text: 'Play File',
@@ -25,11 +24,11 @@ export default (converted_file, config) => {
 
   let message = {
     from: 'deva-airmon <airmon@deva.co>',
-    cc: 'Milos <milos@deva.co>',
     to: 'Gaga <drsvoditelji@gmail.com>',
+    cc: 'Milos <milos@deva.co>',
     subject: 'Airmon record',
     html: pug.renderFile('views/email.pug', email_vars),
-    attachment: `${config.CONV_DIR}/${converted_file}`,
+    attachment: `${converted_file}`,
   }
 
   mailgun.messages().send(message)
