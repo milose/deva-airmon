@@ -21,8 +21,8 @@ env.config()
 record.end()
 
 // Express
-// let app = express()
-// app.set('view engine', 'pug')
+let app = express()
+app.set('view engine', 'pug')
 
 
 /*
@@ -48,6 +48,10 @@ let onRelease = () => {
 }
 
 input.momentary(7, onPush, onRelease)
+
+app.listen(process.env.PORT || 1337, () => {
+  console.log('Started')
+});
 
 if (process.env.LOG_VERBOSE) {
   console.log('Ready.')
