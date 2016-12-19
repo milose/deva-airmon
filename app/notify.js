@@ -23,7 +23,7 @@ export default (converted_file, config) => {
   }
 
   let message = {
-    from: 'deva-airmon <airmon@deva.co>',
+    from: config.APP_NAME + ' <airmon@deva.co>',
     to: 'Gaga <drsvoditelji@gmail.com>',
     cc: 'Milos <milos@deva.co>',
     subject: 'Airmon record',
