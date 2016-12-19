@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon index.js --exec babel-node",
-    "build": "babel index.js -d dist && babel app -d dist/app && mkdir dist/files && mkdir dist/converted",
+    "build": "babel index.js -d dist && babel app -d dist/app && mkdir dist/files && mkdir dist/files/converted",
     "serve": "node dist/index.js"
   },
   "dependencies": {
