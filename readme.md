@@ -27,6 +27,7 @@ Info [link](http://example.com) here.
 ## Todo
 
 #### App
+- [ ] If sending fails, queue
 - [ ] Receivers / Senders in `.env`
 - [ ] Bitrate (-b:a 64k) / Mono (-ac 1) / JointStereo (-joint_stereo 1) to `.env`
 - [ ] Clean up readme
