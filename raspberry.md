@@ -6,19 +6,20 @@ diskutil list
 
 # replace card
 ```bash
-diskutil unmountDisk /dev/disk
+diskutil unmountDisk /dev/disk2
 ```
 
 # note rdisk
 ```bash
 # list files, paste bytes below
-sudo dd if=image.img | pv -s 1389363200 | sudo dd of=/dev/rdisk2 bs=1m
+sudo dd if=image.img | pv -s 1390411776 | sudo dd of=/dev/rdisk2 bs=1m
 sudo diskutil eject /dev/disk2
 ssh pi@ip pass raspberry
 ```
 
 # rpi
 ```bash
+sudo raspi-config
 touch .hushlogin
 passwd
 sudo su
