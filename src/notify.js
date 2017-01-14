@@ -3,20 +3,19 @@
 import mail from 'mailgun-js'
 import pug from 'pug'
 
-export default (converted_file, config) => {
-
+export default (convertedFile, config) => {
   let mailgun = mail({
     apiKey: config.MAILGUN_KEY,
     domain: config.MAILGUN_DOMAIN
   })
 
-  let email_vars = {
+  let emailVars = {
     app_name: config.APP_NAME,
     app_uri: config.APP_URI,
 
     msg_greeting: 'Hello',
     msg_regards: 'Regards',
-    msg_text: config.APP_NAME + ' recorded this airing.',
+    msg_text: config.APP_NAME + ' recorded this airing.'
 
     // act_uri: 'http://deva.co/act',
     // act_text: 'Play File',
@@ -27,8 +26,8 @@ export default (converted_file, config) => {
     to: 'Gaga <drsvoditelji@gmail.com>',
     cc: 'Uros <ypoiii@gmail.com>',
     subject: 'Airmon record',
-    html: pug.renderFile('views/email.pug', email_vars),
-    attachment: `${converted_file}`,
+    html: pug.renderFile('views/email.pug', emailVars),
+    attachment: `${convertedFile}`
   }
 
   mailgun.messages().send(message)
@@ -36,5 +35,4 @@ export default (converted_file, config) => {
   if (config.LOG_VERBOSE) {
     console.log('Sent message.')
   }
-
 }

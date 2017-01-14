@@ -3,9 +3,9 @@
 import os from 'os'
 import sleep from 'sleep'
 
-let prev_value = true,
-  push = null,
-  release = null
+let prevValue = true
+let push = null
+let release = null
 
 exports.momentary = (channel, onPush, onRelease) => {
   push = onPush
@@ -14,7 +14,7 @@ exports.momentary = (channel, onPush, onRelease) => {
   let gpio = null
 
   // Check if raspberry
-  if (os.arch() == 'arm') {
+  if (os.arch() === 'arm') {
     gpio = require('rpi-gpio')
 
     gpio.on('change', debounce)
@@ -25,7 +25,7 @@ exports.momentary = (channel, onPush, onRelease) => {
 }
 
 let debounce = (channel, value) => {
-  if (!value && prev_value) {
+  if (!value && prevValue) {
     push()
   }
 
@@ -33,7 +33,7 @@ let debounce = (channel, value) => {
     release()
   }
 
-  prev_value = value
+  prevValue = value
 
   sleep.usleep(99000)
 }

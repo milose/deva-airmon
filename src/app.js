@@ -9,7 +9,6 @@ import notify from './notify'
 import convert from './convert'
 import input from './input'
 
-
 /*
   Initialize
  */
@@ -24,7 +23,6 @@ record.end()
 let app = express()
 app.set('view engine', 'pug')
 
-
 /*
   Work
  */
@@ -34,18 +32,18 @@ let onPush = () => {
     console.log('Started recording.')
   }
 
-  let record_file = process.env.APP_PATH + '/' + process.env.TEMP_FILE
+  let recordFile = process.env.APP_PATH + '/' + process.env.TEMP_FILE
 
-  record.begin(record_file)
+  record.begin(recordFile)
     .on('close', () => {
-      let output_file = process.env.APP_PATH +
+      let outputFile = process.env.APP_PATH +
         '/' + process.env.CONV_DIR +
         '/' + moment().format('YYYY-MM-DD_HH-mm-ss') +
         `.${process.env.CONV_FILE_EXT}`
 
-      convert(record_file, output_file, process.env)
+      convert(recordFile, outputFile, process.env)
         .on('close', () => {
-          notify(output_file, process.env)
+          notify(outputFile, process.env)
         })
     })
 }
@@ -56,7 +54,7 @@ let onRelease = () => {
 
 input.momentary(7, onPush, onRelease)
 
-app.listen(process.env.PORT || 1337);
+app.listen(process.env.PORT || 1337)
 
 if (process.env.LOG_VERBOSE) {
   console.log('Ready.')

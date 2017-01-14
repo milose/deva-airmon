@@ -4,6 +4,6 @@ import {
   exec
 } from 'child_process'
 
-exports.begin = (output_file) => exec(`arecord -q -f cd ${output_file}`)
+exports.begin = (outputFile) => exec(`arecord -q -f cd ${outputFile}`)
 
-exports.end = (process_name = 'arecord') => exec(`pkill ${process_name}`)
+exports.end = (processName = 'arecord') => exec(`pkill ${processName}`)
