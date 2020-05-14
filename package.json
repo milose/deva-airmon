@@ -1,33 +1,41 @@
 {
   "name": "deva-airmon",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "On-Air monitoring suite for Radio stations.",
   "author": "Miloš Šaković <milos@deva.co>",
   "private": true,
   "scripts": {
-    "start": "nodemon src/app.js --exec babel-node",
-    "build": "babel src/ -d dist/",
+    "build": "babel src -d dist",
     "serve": "sudo node dist/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node dist/test-notification.js"
   },
   "dependencies": {
-    "dotenv": "^2.0.0",
-    "express": "^4.14.0",
-    "mailgun-js": "^0.7.14",
-    "moment": "^2.17.1",
-    "pug": "^2.0.0-beta6",
-    "rpi-gpio": "^0.7.0",
-    "sleep": "^5.0.0"
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mailgun-js": "^0.22.0",
+    "moment": "^2.25.3",
+    "pug": "^2.0.4",
+    "rpi-gpio": "0.7"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier-standard": "^3.0.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^2.0.5",
+    "prettier-config-standard": "^1.0.1",
+    "prettier-standard": "^16.3.0"
   },
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-stage-2": "^6.18.0",
-    "nodemon": "^1.11.0",
-    "standard": "^8.6.0"
   }
 }
