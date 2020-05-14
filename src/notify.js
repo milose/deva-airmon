@@ -6,7 +6,8 @@ import pug from 'pug'
 export default (convertedFile, config) => {
   let mailgun = mail({
     apiKey: config.MAILGUN_KEY,
-    domain: config.MAILGUN_DOMAIN
+    domain: config.MAILGUN_DOMAIN,
+    host: config.MAILGUN_HOST || 'api.mailgun.net'
   })
 
   let emailVars = {
