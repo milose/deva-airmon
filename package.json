@@ -18,7 +18,8 @@
     "mailgun-js": "^0.22.0",
     "moment": "^2.25.3",
     "pug": "^2.0.4",
-    "rpi-gpio": "0.7"
+    "rpi-gpio": "^2.1.5",
+    "sleep": "^6.1.0"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
