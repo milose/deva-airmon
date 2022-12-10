@@ -14,7 +14,7 @@
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mailgun-js": "^0.22.0",
     "moment": "^2.25.3",
     "pug": "^2.0.4",
